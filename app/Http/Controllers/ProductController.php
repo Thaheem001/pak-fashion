@@ -173,13 +173,13 @@ class ProductController extends Controller
                 else
                     $nestedData['brand'] = "N/A";
                 $nestedData['category'] = $product->category->name;
-              
+
                 if (Auth::user()->role_id > 2 && $product->type == 'standard') {
                     $nestedData['qty'] = Product_Warehouse::where([
                         ['product_id', $product->id],
                         ['warehouse_id', ]
                     ])->sum('qty');
-                    
+
                 } else
                 $nestedData['qty'] = (int)$variantQtySum . " in stock for " . (int)$variantQty;
                 if ($product->status)
@@ -191,7 +191,7 @@ class ProductController extends Controller
                     } else {
                         $nestedData['price'] = 0;
                     }
-                    
+
                 $nestedData['cost'] = $inventoryQtySum;
 
                 if (config('currency_position') == 'prefix')
@@ -217,13 +217,13 @@ class ProductController extends Controller
                     $nestedData['options'] .= \Form::open(["route" => "products.history", "method" => "GET"]) . '
                             <li>
                                 <input type="hidden" name="product_id" value="' . $product->id . '" />
-                                <button type="submit" class="btn btn-link"><i class="dripicons-checklist"></i> ' . trans("file.Product History") . '</button> 
+                                <button type="submit" class="btn btn-link"><i class="dripicons-checklist"></i> ' . trans("file.Product History") . '</button>
                             </li>' . \Form::close();
-             
+
                 if (in_array("products-delete", $request['all_permission']))
                     $nestedData['options'] .= \Form::open(["route" => ["products.destroy", $product->id], "method" => "DELETE"]) . '
                             <li>
-                              <button type="submit" class="btn btn-link" onclick="return confirmDelete()"><i class="fa fa-trash"></i> ' . trans("file.delete") . '</button> 
+                              <button type="submit" class="btn btn-link" onclick="return confirmDelete()"><i class="fa fa-trash"></i> ' . trans("file.delete") . '</button>
                             </li>' . \Form::close() . '
                         </ul>
                     </div>';
@@ -347,7 +347,7 @@ class ProductController extends Controller
     //     $data['is_active'] = true;
     //     $images = $request->image;
     //     $image_names = [];
-    //     if($images) {          
+    //     if($images) {
     //         foreach ($images as $key => $image) {
     //             $ext = pathinfo($image->getClientOriginalName(), PATHINFO_EXTENSION);
     //             $imageName = date("Ymdhis") . ($key+1);
@@ -399,7 +399,7 @@ class ProductController extends Controller
     //             $lims_variant_data = Variant::firstOrCreate(['name' => $data['variant_name'][$key]]);
     //             $lims_variant_data->name = $data['variant_name'][$key];
     //             $lims_variant_data->save();
-    //             $lims_product_variant_data = new ProductVariant;             
+    //             $lims_product_variant_data = new ProductVariant;
     //             $lims_product_variant_data->product_id = $lims_product_data->id;
     //             $lims_product_variant_data->variant_id = $lims_variant_data->id;
     //             $lims_product_variant_data->position = $key + 1;
@@ -1039,7 +1039,7 @@ class ProductController extends Controller
             $lims_warehouse_list = Warehouse::where('is_active', true)->get();
             $noOfVariantValue = 0;
             // $collection = [];
-            $collections = tag::whereNotIn('title', json_decode($lims_product_data->tags))->get();
+            $collections = tag::whereNotIn('title', explode(',',$lims_product_data->tags))->get();
 
             $product_image = product_image::where('product_id', $id)->get();
             $productVariant = ProductVariant::where('product_id', $id)->get();

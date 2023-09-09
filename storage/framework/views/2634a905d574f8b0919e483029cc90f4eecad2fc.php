@@ -1,12 +1,11 @@
-@extends('backend.layout.main')
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-<link rel="stylesheet" href="{{ asset('calender/date-picker.css') }}">
-<link rel="stylesheet" href="{{ asset('ImageSelector/style.css') }}">
+<link rel="stylesheet" href="<?php echo e(asset('calender/date-picker.css')); ?>">
+<link rel="stylesheet" href="<?php echo e(asset('ImageSelector/style.css')); ?>">
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <section class="forms">
         <div class="container-fluid">
             <form id="product-form">
@@ -14,22 +13,22 @@
                     <div class="col-md-8">
                         <div class="card">
                             <div class="card-header d-flex align-items-center">
-                                <!-- <h4>{{ trans('file.add_product') }}</h4> -->
+                                <!-- <h4><?php echo e(trans('file.add_product')); ?></h4> -->
                                 <h4>Update Product</h4>
                             </div>
                             <div class="card-body">
                                 <p class="italic">
-                                    <small>{{ trans('file.The field labels marked with * are required input fields') }}.</small>
+                                    <small><?php echo e(trans('file.The field labels marked with * are required input fields')); ?>.</small>
                                 </p>
 
                                 <div class="row">
 
                                     <div class="col-md-12">
-                                        <input type="hidden" name="id" value="{{ $lims_product_data->id }}">
+                                        <input type="hidden" name="id" value="<?php echo e($lims_product_data->id); ?>">
                                         <div class="form-group">
                                             <label>Title*</strong> </label>
                                             <input type="text" name="name" class="form-control"
-                                                value="{{ $lims_product_data->name }}" id="name"
+                                                value="<?php echo e($lims_product_data->name); ?>" id="name"
                                                 aria-describedby="name" required>
                                             <!-- <span class="validation-msg" id="name-error"></span> -->
                                         </div>
@@ -37,8 +36,8 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="form-group">
-                                            <label>{{ trans('file.Product Details') }}</label>
-                                            <textarea name="product_details" class="form-control" rows="3">{{ $lims_product_data->product_details }}</textarea>
+                                            <label><?php echo e(trans('file.Product Details')); ?></label>
+                                            <textarea name="product_details" class="form-control" rows="3"><?php echo e($lims_product_data->product_details); ?></textarea>
                                         </div>
                                         <div class="error-message text-danger" id="product_details-error"></div>
 
@@ -49,7 +48,7 @@
                                             <div class="d-flex justify-content-start">
                                                 <label class="media ml-2">Media</strong></label><i
                                                     class="dripicons-question ml-2" data-toggle="tooltip"
-                                                    title="{{ trans('file.You can upload multiple image. Only .jpeg, .jpg, .png, .gif file can be uploaded. First image will be base image.') }}"></i>
+                                                    title="<?php echo e(trans('file.You can upload multiple image. Only .jpeg, .jpg, .png, .gif file can be uploaded. First image will be base image.')); ?>"></i>
                                             </div>
                                             <input type="hidden" name="image_count" class="image_count">
                                             <div class="media_style">
@@ -67,21 +66,21 @@
                                         <div class="d-flex justify-content-start" id="database_images"
                                             style="border: 2px dashed;margin-top: 10px;">
 
-                                            @foreach ($lims_product_data->product_image as $image)
-                                                @php
+                                            <?php $__currentLoopData = $lims_product_data->product_image; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $image): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php
                                                     $url = $image['src'];
                                                     $isShopifyUrl = strpos($url, '//cdn.shopify.com');
-                                                @endphp
+                                                ?>
 
-                                                @if ($isShopifyUrl === false)
-                                                    <img src="{{ asset('images/product/' . $url) }}" alt="Product Image"
+                                                <?php if($isShopifyUrl === false): ?>
+                                                    <img src="<?php echo e(asset('images/product/' . $url)); ?>" alt="Product Image"
                                                         class="mr-2 mt-1 mb-1 ml-2"
                                                         style="width: 100px; height: 150px; border:1px solid;">
-                                                @else
-                                                    <img src="{{ $url }}" alt="Product Image"
+                                                <?php else: ?>
+                                                    <img src="<?php echo e($url); ?>" alt="Product Image"
                                                         class="mr-2 mt-1 mb-1 ml-2" style="width: 100px; height: 150px;">
-                                                @endif
-                                            @endforeach
+                                                <?php endif; ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
                                         </div>
                                     </div>
@@ -89,14 +88,14 @@
 
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>{{ trans('file.Product Code') }} *</strong> </label>
+                                            <label><?php echo e(trans('file.Product Code')); ?> *</strong> </label>
                                             <div class="input-group">
                                                 <input type="text" name="code" class="form-control"
-                                                    value="{{ $lims_product_data->code }}" id="code"
+                                                    value="<?php echo e($lims_product_data->code); ?>" id="code"
                                                     aria-describedby="code" required>
                                                 <div class="input-group-append">
                                                     <button id="genbutton" type="button" class="btn btn-sm btn-default"
-                                                        title="{{ trans('file.Generate') }}"><i
+                                                        title="<?php echo e(trans('file.Generate')); ?>"><i
                                                             class="fa fa-refresh"></i></button>
                                                 </div>
                                             </div>
@@ -105,12 +104,12 @@
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group">
-                                            <label>{{ trans('file.Barcode Symbology') }} *</strong> </label>
+                                            <label><?php echo e(trans('file.Barcode Symbology')); ?> *</strong> </label>
                                             <div class="input-group">
                                                 <select name="barcode_symbology" required
                                                     class="form-control selectpicker">
-                                                    <option value="{{ $lims_product_data->barcode_symbology }}" selected>
-                                                        {{ $lims_product_data->barcode_symbology }}</option>
+                                                    <option value="<?php echo e($lims_product_data->barcode_symbology); ?>" selected>
+                                                        <?php echo e($lims_product_data->barcode_symbology); ?></option>
                                                     <option value="C128">Code 128</option>
                                                     <option value="C39">Code 39</option>
                                                     <option value="UPCA">UPC-A</option>
@@ -123,7 +122,7 @@
                                     </div>
                                     <div id="digital" class="col-md-4">
                                         <div class="form-group">
-                                            <label>{{ trans('file.Attach File') }} *</strong> </label>
+                                            <label><?php echo e(trans('file.Attach File')); ?> *</strong> </label>
                                             <div class="input-group">
                                                 <input type="file" id="file" name="file"
                                                     class="form-control">
@@ -132,21 +131,21 @@
                                         </div>
                                     </div>
                                     <div id="combo" class="col-md-9 mb-1">
-                                        <label>{{ trans('file.add_product') }}</label>
+                                        <label><?php echo e(trans('file.add_product')); ?></label>
                                         <div class="search-box input-group mb-3">
                                             <button class="btn btn-secondary"><i class="fa fa-barcode"></i></button>
                                             <input type="text" name="product_code_name" id="lims_productcodeSearch"
                                                 placeholder="Please type product code and select..."
                                                 class="form-control" />
                                         </div>
-                                        <label>{{ trans('file.Combo Products') }}</label>
+                                        <label><?php echo e(trans('file.Combo Products')); ?></label>
                                         <div class="table-responsive">
                                             <table id="myTable" class="table table-hover order-list">
                                                 <thead>
                                                     <tr>
-                                                        <th>{{ trans('file.product') }}</th>
-                                                        <th>{{ trans('file.Quantity') }}</th>
-                                                        <th>{{ trans('file.Unit Price') }}</th>
+                                                        <th><?php echo e(trans('file.product')); ?></th>
+                                                        <th><?php echo e(trans('file.Quantity')); ?></th>
+                                                        <th><?php echo e(trans('file.Unit Price')); ?></th>
                                                         <th><i class="dripicons-trash"></i></th>
                                                     </tr>
                                                 </thead>
@@ -161,27 +160,29 @@
                                     <div class="col-md-4">
                                         <div class="form-group mt-3">
                                             <input type="checkbox" name="is_initial_stock" value="1">&nbsp;
-                                            <label>{{ trans('file.Initial Stock') }}</label>
+                                            <label><?php echo e(trans('file.Initial Stock')); ?></label>
                                             <p class="italic">
-                                                {{ trans('file.This feature will not work for product with variants and batches') }}
+                                                <?php echo e(trans('file.This feature will not work for product with variants and batches')); ?>
+
                                             </p>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group mt-3">
                                             <input type="checkbox" name="featured" value="1">&nbsp;
-                                            <label>{{ trans('file.Featured') }}</label>
+                                            <label><?php echo e(trans('file.Featured')); ?></label>
                                             <p class="italic">
-                                                {{ trans('file.Featured product will be displayed in POS') }}
+                                                <?php echo e(trans('file.Featured product will be displayed in POS')); ?>
+
                                             </p>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group mt-3">
                                             <input type="checkbox" name="is_embeded" value="1">&nbsp;
-                                            <label>{{ trans('file.Embedded Barcode') }} <i class="dripicons-question"
+                                            <label><?php echo e(trans('file.Embedded Barcode')); ?> <i class="dripicons-question"
                                                     data-toggle="tooltip"
-                                                    title="{{ trans('file.Check this if this product will be used in weight scale machine.') }}"></i></label>
+                                                    title="<?php echo e(trans('file.Check this if this product will be used in weight scale machine.')); ?>"></i></label>
                                         </div>
                                     </div>
                                     <div class="col-md-6" id="initial-stock-section">
@@ -189,20 +190,21 @@
                                             <table class="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th>{{ trans('file.Warehouse') }}</th>
-                                                        <th>{{ trans('file.qty') }}</th>
+                                                        <th><?php echo e(trans('file.Warehouse')); ?></th>
+                                                        <th><?php echo e(trans('file.qty')); ?></th>
                                                     </tr>
-                                                    @foreach ($lims_warehouse_list as $warehouse)
+                                                    <?php $__currentLoopData = $lims_warehouse_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $warehouse): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <tr>
                                                             <td>
                                                                 <input type="hidden" name="stock_warehouse_id[]"
-                                                                    value="{{ $warehouse->id }}">
-                                                                {{ $warehouse->name }}
+                                                                    value="<?php echo e($warehouse->id); ?>">
+                                                                <?php echo e($warehouse->name); ?>
+
                                                             </td>
                                                             <td><input type="number" name="stock[]" min="0"
                                                                     class="form-control"></td>
                                                         </tr>
-                                                    @endforeach
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </thead>
                                                 <tbody>
                                                 </tbody>
@@ -213,7 +215,8 @@
                                     <div class="col-md-12 mt-2" id="diffPrice-option">
                                         <h5><input name="is_diffPrice" type="checkbox" id="is-diffPrice"
                                                 value="1">&nbsp;
-                                            {{ trans('file.This product has different price for different warehouse') }}
+                                            <?php echo e(trans('file.This product has different price for different warehouse')); ?>
+
                                         </h5>
                                     </div>
                                     <div class="col-md-6" id="diffPrice-section">
@@ -221,15 +224,16 @@
                                             <table id="diffPrice-table" class="table table-hover">
                                                 <thead>
                                                     <tr>
-                                                        <th>{{ trans('file.Warehouse') }}</th>
-                                                        <th>{{ trans('file.Price') }}</th>
+                                                        <th><?php echo e(trans('file.Warehouse')); ?></th>
+                                                        <th><?php echo e(trans('file.Price')); ?></th>
                                                     </tr>
-                                                    @foreach ($lims_warehouse_list as $warehouse)
+                                                    <?php $__currentLoopData = $lims_warehouse_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $warehouse): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                         <tr>
                                                             <td>
                                                                 <input type="hidden" name="warehouse_id[]"
-                                                                    value="{{ $warehouse->id }}">
-                                                                {{ $warehouse->name }}
+                                                                    value="<?php echo e($warehouse->id); ?>">
+                                                                <?php echo e($warehouse->name); ?>
+
                                                             </td>
                                                             <td>
                                                                 <input type="number" name="diff_price[]"
@@ -239,7 +243,7 @@
                                                                 warehouse_id
                                                             </td>
                                                         </tr>
-                                                    @endforeach
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </thead>
                                                 <tbody>
                                                 </tbody>
@@ -247,33 +251,35 @@
                                         </div>
                                     </div>
                                     <div class="col-md-12 mt-3" id="batch-option"
-                                        style="display: {{ count($lims_product_data->productVariants) > 0 ? 'none' : 'block' }}">
+                                        style="display: <?php echo e(count($lims_product_data->productVariants) > 0 ? 'none' : 'block'); ?>">
                                         <h5><input name="is_batch" type="checkbox" id="is-batch" value="1">&nbsp;
-                                            {{ trans('file.This product has batch and expired date') }}
+                                            <?php echo e(trans('file.This product has batch and expired date')); ?>
+
                                         </h5>
                                     </div>
                                     <div class="col-md-12 mt-3" id="imei-option">
                                         <h5><input name="is_imei" type="checkbox" id="is-imei" value="1">&nbsp;
-                                            {{ trans('file.This product has IMEI or Serial numbers') }}
+                                            <?php echo e(trans('file.This product has IMEI or Serial numbers')); ?>
+
                                         </h5>
                                     </div>
                                     <div class="col-md-4 mt-3">
                                         <input name="promotion" type="checkbox" id="promotion" value="1">&nbsp;
                                         <label>
-                                            <h5> {{ trans('file.Add Promotional Price') }}</h5>
+                                            <h5> <?php echo e(trans('file.Add Promotional Price')); ?></h5>
                                         </label>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="row">
                                             <div class="col-md-4" id="promotion_price">
-                                                <label>{{ trans('file.Promotional Price') }}</label>
+                                                <label><?php echo e(trans('file.Promotional Price')); ?></label>
                                                 <input type="number" name="promotion_price" class="form-control"
-                                                    value="{{ $lims_product_data->promotion_price }}" step="any" />
+                                                    value="<?php echo e($lims_product_data->promotion_price); ?>" step="any" />
                                                 <div class="error-message text-danger" id="promotion_price-error"></div>
                                             </div>
                                             <div class="col-md-4" id="start_date">
                                                 <div class="form-group">
-                                                    <label>{{ trans('file.Promotion Starts') }}</label>
+                                                    <label><?php echo e(trans('file.Promotion Starts')); ?></label>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text"><i
@@ -281,7 +287,7 @@
                                                             </div>
                                                         </div>
                                                         <input type="text" name="starting_date"
-                                                            value="{{ $lims_product_data->starting_date }}"
+                                                            value="<?php echo e($lims_product_data->starting_date); ?>"
                                                             id="starting_date" class="form-control" />
                                                     </div>
                                                     <div class="error-message text-danger" id="starting_date-error"></div>
@@ -289,7 +295,7 @@
                                             </div>
                                             <div class="col-md-4" id="last_date">
                                                 <div class="form-group">
-                                                    <label>{{ trans('file.Promotion Ends') }}</label>
+                                                    <label><?php echo e(trans('file.Promotion Ends')); ?></label>
                                                     <div class="input-group">
                                                         <div class="input-group-prepend">
                                                             <div class="input-group-text"><i
@@ -297,7 +303,7 @@
                                                             </div>
                                                         </div>
                                                         <input type="text" name="last_date"
-                                                            value="{{ $lims_product_data->last_date }}" id="ending_date"
+                                                            value="<?php echo e($lims_product_data->last_date); ?>" id="ending_date"
                                                             class="form-control" />
                                                     </div>
                                                     <div class="error-message text-danger" id="last_date-error"></div>
@@ -306,7 +312,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    @if (\Schema::hasColumn('products', 'woocommerce_product_id'))
+                                    <?php if(\Schema::hasColumn('products', 'woocommerce_product_id')): ?>
                                         <div class="col-md-12 ">
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="checkbox" name="is_sync_disable"
@@ -316,7 +322,7 @@
                                                 </label>
                                             </div>
                                         </div>
-                                    @endif
+                                    <?php endif; ?>
                                 </div>
 
 
@@ -328,7 +334,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4" class="title">Price</label>
                                     <input type="text" class="form-control price" name="price"
-                                        value="{{ $lims_product_data->price }}" id="fields"
+                                        value="<?php echo e($lims_product_data->price); ?>" id="fields"
                                         placeholder="Enter amount" aria-label="Amount" oninput="getValue()"
                                         style="border: 1px solid black; border-radius: 5px;">
                                     <div class="error-message text-danger" id="price-error"></div>
@@ -336,7 +342,7 @@
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4" class="title">Compare-at-price</label>
                                     <input type="text" class="form-control comp_price" name="comp_price"
-                                        value="{{ old('comp_price') }}" id="fields" placeholder="Enter amount"
+                                        value="<?php echo e(old('comp_price')); ?>" id="fields" placeholder="Enter amount"
                                         oninput="getValue()" aria-label="Amount"
                                         style="border: 1px solid black; border-radius: 5px;">
                                     <div class="error-message text-danger" id="comp_price-error"></div>
@@ -353,7 +359,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4" class="cost">Cost per item</label>
                                     <input type="text" class="form-control cost_per_item"
-                                        value="{{ old('per_item_cost') }}" name="per_item_cost" id="fields"
+                                        value="<?php echo e(old('per_item_cost')); ?>" name="per_item_cost" id="fields"
                                         oninput="getValue()" placeholder="Enter amount" aria-label="Amount"
                                         style="border: 1px solid black; border-radius: 5px;">
                                     <div class="error-message text-danger" id="per_item_cost-error"></div>
@@ -361,25 +367,39 @@
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4" class="profit">Profit</label>
                                     <input type="text" class="form-control profit_value" id="fields"
-                                        value="{{ old('product_profit') }}" name="product_profit"
+                                        value="<?php echo e(old('product_profit')); ?>" name="product_profit"
                                         placeholder="Enter amount" aria-label="Amount"
                                         style="border: 1px solid black; border-radius: 5px;">
                                     <span class=" mb-2">
-                                        @error('product_profit')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                                        <?php $__errorArgs = ['product_profit'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="text-danger"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </span>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputPassword4" class="margin">Margin</label>
                                     <input type="text" class="form-control margin_value" id="fields"
-                                        value="{{ old('product_margin') }}" name="product_margin"
+                                        value="<?php echo e(old('product_margin')); ?>" name="product_margin"
                                         placeholder="Enter amount" aria-label="Amount"
                                         style="border: 1px solid black; border-radius: 5px;">
                                     <span class=" mb-2">
-                                        @error('product_margin')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                                        <?php $__errorArgs = ['product_margin'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="text-danger"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </span>
                                 </div>
                             </div>
@@ -405,7 +425,7 @@
                                     </div>
                                     <div class="form-group col-md-3">
                                         <input type="number" class="form-control" placeholder="0"
-                                            value="{{ old('product_quantity') }}" name="product_quantity"
+                                            value="<?php echo e(old('product_quantity')); ?>" name="product_quantity"
                                             id="quantityField" style="border: 1px solid black; border-radius: 5px;">
                                         <div class="error-message text-danger" id="product_quantity-error"></div>
                                     </div>
@@ -435,14 +455,14 @@
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4" class="sku">SKU (Stock Keeping Unit)</label>
                                     <input type="text" class="form-control" id="currencyInput"
-                                        value="{{ old('sku_input') }}" name="sku_input" aria-label="Amount"
+                                        value="<?php echo e(old('sku_input')); ?>" name="sku_input" aria-label="Amount"
                                         style="border: 1px solid black; border-radius: 5px;">
                                     <div class="error-message text-danger" id="sku_input-error"></div>
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputPassword4" class="Barcode">Barcode (ISBN, UCP, GTIN, etc)</label>
                                     <input type="text" class="form-control" id="currencyInput" name="bar_code"
-                                        value="{{ old('bar_code') }}" aria-label="Amount"
+                                        value="<?php echo e(old('bar_code')); ?>" aria-label="Amount"
                                         style="border: 1px solid black; border-radius: 5px;">
                                     <div class="error-message text-danger" id="bar_code-error"></div>
                                 </div>
@@ -461,17 +481,17 @@
                                                     <label for="" class="Weight ">Weight</label>
                                                     <div class="d-flex">
                                                         <div class="form-group col-md-5">
-                                                            <input type="number" class="form-control" value="{{ old('weight') }}" id="currencyInput" name="weight" aria-label="Amount" step="0.01" style="border: 1px solid black; border-radius: 5px;">
+                                                            <input type="number" class="form-control" value="<?php echo e(old('weight')); ?>" id="currencyInput" name="weight" aria-label="Amount" step="0.01" style="border: 1px solid black; border-radius: 5px;">
                                                             <div class="error-message text-danger" id="weight-error"></div>
                                                         </div>
                                                         <div class="form-group col-md-3">
                                                             <select required class="form-control selectpicker" name="unit_id">
                                                                 <option value="" disabled selected>Select Product Unit...</option>
-                                                                @foreach ($lims_unit_list as $unit)
-    @if ($unit->base_unit == null)
-    <option value="{{ $unit->id }}">{{ $unit->unit_name }}</option>
-    @endif
-    @endforeach
+                                                                <?php $__currentLoopData = $lims_unit_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $unit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <?php if($unit->base_unit == null): ?>
+    <option value="<?php echo e($unit->id); ?>"><?php echo e($unit->unit_name); ?></option>
+    <?php endif; ?>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </select>
                                                             <div class="error-message text-danger" id="unit_id-error"></div>
                                                         </div>
@@ -480,44 +500,58 @@
                             <div class=" form-group col-md-4" id="shipping_field">
                                 <label for="" class="Weight ">Weight</label>
                                 <div class="d-flex">
-                                    @if (count($lims_product_data->productVariants) > 0)
+                                    <?php if(count($lims_product_data->productVariants) > 0): ?>
                                         <input type="number" class="form-control"
-                                            value="{{ $lims_product_data->productVariants[0]->weight }}"
+                                            value="<?php echo e($lims_product_data->productVariants[0]->weight); ?>"
                                             id="currencyInput" name="weight" aria-label="Amount" step="0.01"
                                             style="border: 1px solid black; border-radius: 5px;">
-                                    @else
+                                    <?php else: ?>
                                         <input type="number" class="form-control" value="" id="currencyInput"
                                             name="weight" aria-label="Amount" step="0.01"
                                             style="border: 1px solid black; border-radius: 5px;">
-                                    @endif
+                                    <?php endif; ?>
                                     <span class=" mb-2">
-                                        @error('weight')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                                        <?php $__errorArgs = ['weight'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="text-danger"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </span>
                                     <select required class="form-control selectpicker" name="unit_id">
-                                        @if (isset($lims_product_data->productVariants[0]->weight_unit) > 0)
-                                            <option value="{{ $lims_product_data->productVariants[0]->weight_unit }}"
-                                                selected>{{ $lims_product_data->productVariants[0]->weight_unit }}</option>
-                                        @else
+                                        <?php if(isset($lims_product_data->productVariants[0]->weight_unit) > 0): ?>
+                                            <option value="<?php echo e($lims_product_data->productVariants[0]->weight_unit); ?>"
+                                                selected><?php echo e($lims_product_data->productVariants[0]->weight_unit); ?></option>
+                                        <?php else: ?>
                                             <option></option>
-                                        @endif
+                                        <?php endif; ?>
                                         <!-- <option value="" disabled selected>Select Product Unit...</option> -->
-                                        @foreach ($lims_unit_list as $unit)
-                                            @if ($unit->base_unit == null)
-                                                @if (count($lims_product_data->productVariants) > 0)
-                                                @else
+                                        <?php $__currentLoopData = $lims_unit_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $unit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <?php if($unit->base_unit == null): ?>
+                                                <?php if(count($lims_product_data->productVariants) > 0): ?>
+                                                <?php else: ?>
                                                     <option value=""></option>
-                                                @endif
-                                                <option value="{{ $unit->id }}">{{ $unit->unit_name }}</option>
-                                            @endif
-                                        @endforeach
+                                                <?php endif; ?>
+                                                <option value="<?php echo e($unit->id); ?>"><?php echo e($unit->unit_name); ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
 
                                     <span class=" mb-2">
-                                        @error('weight_unit')
-                                            <div class="text-danger">{{ $message }}</div>
-                                        @enderror
+                                        <?php $__errorArgs = ['weight_unit'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                                            <div class="text-danger"><?php echo e($message); ?></div>
+                                        <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                                     </span>
                                 </div>
                             </div>
@@ -535,7 +569,7 @@
                                     <label class="Country">Country</label>
                                     <div>
                                         <select class="form-select border w-100" name="country"
-                                            value="{{ old('country') }}" aria-label="Default select example">
+                                            value="<?php echo e(old('country')); ?>" aria-label="Default select example">
                                             <option value="" disabled hidden>Choose Country</option>
                                             <option value="1">Pakistan</option>
                                             <option value="2">India</option>
@@ -551,7 +585,7 @@
                                 <div class="form-group">
                                     <label class="HS">HS (Harmonized System)</label>
                                     <input name="harmonized_system" type="search"
-                                        value="{{ old('harmonized_system') }}" placeholder="Search Here"
+                                        value="<?php echo e(old('harmonized_system')); ?>" placeholder="Search Here"
                                         class="form-control" style="border: 1px solid black; border-radius: 5px;">
                                     <div class="error-message text-danger" id="harmonized_system-error"></div>
                                 </div>
@@ -562,21 +596,21 @@
 
                             <div class="col-md-12 mt-3" id="variant-option">
                                 <h5><input name="is_variant" type="checkbox" id="is-variant" value="1"
-                                        {{ count($lims_product_data->productVariants) > 0 ? 'checked' : '' }}>&nbsp;
+                                        <?php echo e(count($lims_product_data->productVariants) > 0 ? 'checked' : ''); ?>>&nbsp;
                                     <label for="is-variant">This product has variant</label>
                                 </h5>
                             </div>
                             <div class="col-md-12" id="variant-section">
                                 <div class="row" id="variant-input-section">
                                     <div class="col-md-6 form-group mt-2">
-                                        <label>{{ trans('file.Option') }} *</label>
+                                        <label><?php echo e(trans('file.Option')); ?> *</label>
                                         <input type="text" name="variant_option[]" class="form-control variant-field"
                                             placeholder="Size, Color etc...">
                                         <div class="error-message text-danger" id="variant_option-error"></div>
 
                                     </div>
                                     <div class="col-md-6 form-group mt-2">
-                                        <label>{{ trans('file.Value') }} *</label>
+                                        <label><?php echo e(trans('file.Value')); ?> *</label>
                                         <input type="text" name="variant_value[]"
                                             class="type-variant form-control variant-field">
                                         <div class="error-message text-danger" id="variant_value-error"></div>
@@ -586,13 +620,13 @@
                                 <div class="col-md-12 form-group">
                                     <button type="button" class="btn btn-info add-more-variant"><i
                                             class="dripicons-plus"></i>
-                                        {{ trans('file.Add More Variant') }}</button>
+                                        <?php echo e(trans('file.Add More Variant')); ?></button>
                                 </div>
                                 <div class="table-responsive ml-2">
                                     <table id="variant-table" class="table table-hover variant-list">
                                         <thead>
                                             <tr>
-                                                <th>{{ trans('file.name') }}</th>
+                                                <th><?php echo e(trans('file.name')); ?></th>
                                                 <th>Variant</th>
                                                 <th>Price</th>
                                                 <th>On Hand</th>
@@ -601,39 +635,40 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($productVariant as $eachVariant)
+                                            <?php $__currentLoopData = $productVariant; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eachVariant): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <!-- <tr>
-                                                                    <td>{{ $eachVariant->title }}</td>
-                                                                    <td>{{ $eachVariant->item_code }}</td>
-                                                                    <td>{{ $eachVariant->price }}</td>
-                                                                    <td>{{ $eachVariant->additional_cost }}</td>
-                                                                    <td>{{ $eachVariant->qty }}</td>
+                                                                    <td><?php echo e($eachVariant->title); ?></td>
+                                                                    <td><?php echo e($eachVariant->item_code); ?></td>
+                                                                    <td><?php echo e($eachVariant->price); ?></td>
+                                                                    <td><?php echo e($eachVariant->additional_cost); ?></td>
+                                                                    <td><?php echo e($eachVariant->qty); ?></td>
                                                                     <td class="d-flex"><button type="button" class="btn btn-primary">Edit</button><button type="button" class="btn btn-danger ml-2 disabled">Delete</button></td>
                                                                 </tr> -->
                                                 <tr class="dbRows">
                                                     <!-- <td>
-                                                                        <input type="text" name="variant_name[]" class="form-control" value="{{ $eachVariant->title }}" >
+                                                                        <input type="text" name="variant_name[]" class="form-control" value="<?php echo e($eachVariant->title); ?>" >
                                                                     </td> -->
-                                                    <td class="variant-name mt-2">{{ $eachVariant->title }}
+                                                    <td class="variant-name mt-2"><?php echo e($eachVariant->title); ?>
+
                                                         <input type="hidden" name="variant_name[]"
-                                                            value="{{ $eachVariant->title }}" />
+                                                            value="<?php echo e($eachVariant->title); ?>" />
                                                     </td>
                                                     <td>
                                                         <input type="text" name="item_code[]" class="form-control"
-                                                            value="{{ $eachVariant->item_code }}">
+                                                            value="<?php echo e($eachVariant->item_code); ?>">
                                                     </td>
                                                     <td>
                                                         <input type="number" name="additional_price[]"
-                                                            class="form-control" value="{{ $eachVariant->price }}">
+                                                            class="form-control" value="<?php echo e($eachVariant->price); ?>">
                                                     </td>
                                                     <td>
                                                         <input type="number" name="additional_cost[]"
                                                             class="form-control"
-                                                            value="{{ $eachVariant->additional_cost }}">
+                                                            value="<?php echo e($eachVariant->additional_cost); ?>">
                                                     </td>
                                                     <td>
                                                         <input type="number" name="variant_quantity[]"
-                                                            class="form-control" value="{{ $eachVariant->qty }}">
+                                                            class="form-control" value="<?php echo e($eachVariant->qty); ?>">
                                                     </td>
                                                     <td class="d-flex">
                                                         <!-- <button type="button" class="btn btn-primary edit-variant">Edit</button>
@@ -642,7 +677,7 @@
                                                             class="btn btn-danger ml-2 delete-variant">Delete</button>
                                                     </td>
                                                 </tr>
-                                            @endforeach
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </tbody>
                                     </table>
                                 </div>
@@ -682,8 +717,8 @@
                                     <div>
                                         <select class="form-select border w-100" name="save_status"
                                             title="Select Status">
-                                            <option value="{{ $lims_product_data->status }}" selected>
-                                                {{ $lims_product_data->status }}</option>
+                                            <option value="<?php echo e($lims_product_data->status); ?>" selected>
+                                                <?php echo e($lims_product_data->status); ?></option>
                                             <option value="Active" class="text"> Active</option>
                                             <option value="Inactive" class="text">Draft</option>
                                         </select>
@@ -715,7 +750,7 @@
                                                 <label for="">Start Date</label>
                                                 <input type="text" id="start_date" name="startdate"
                                                     class="date-picker form-control"
-                                                    value="{{ $lims_product_data->starting_date }}" />
+                                                    value="<?php echo e($lims_product_data->starting_date); ?>" />
                                                 <!-- <input type="date" id="start_date" class="form-control" /> -->
                                             </div>
                                             <div class="error-message text-danger" id="stardate-error"></div>
@@ -724,7 +759,7 @@
                                                 <label for="">End Time</label>
                                                 <input type="text" id="end_date" name="enddate"
                                                     class="date-picker form-control"
-                                                    value="{{ $lims_product_data->last_date }}" />
+                                                    value="<?php echo e($lims_product_data->last_date); ?>" />
                                             </div>
                                             <div class="error-message text-danger" id="ending_date-error"></div>
 
@@ -758,7 +793,7 @@
                                                     Store</span>
                                             </li>
                                             <li>
-                                                <img src="{{ asset('icons/datetime.png') }}" alt=""
+                                                <img src="<?php echo e(asset('icons/datetime.png')); ?>" alt=""
                                                     width="20px" height="20px" class=""
                                                     id="product_publish_date" data-toggle="modal"
                                                     data-target="#exampleModal">
@@ -814,17 +849,17 @@
                                 <label class="card-title pro_org">Product Organization</label>
 
                                 <div class="form-group">
-                                    <label>{{ trans('file.category') }} *</strong> </label>
+                                    <label><?php echo e(trans('file.category')); ?> *</strong> </label>
                                     <div class="input-group">
                                         <select name="category_id" required class="selectpicker form-control"
                                             data-live-search="true" data-live-search-style="begins"
                                             title="Select Category...">
-                                            <option value="{{ $lims_product_data->category->id }}" selected>
-                                                {{ $lims_product_data->category->name }}</option>
+                                            <option value="<?php echo e($lims_product_data->category->id); ?>" selected>
+                                                <?php echo e($lims_product_data->category->name); ?></option>
 
-                                            @foreach ($lims_category_list as $category)
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $lims_category_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $category): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($category->id); ?>"><?php echo e($category->name); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                     <div class="error-message text-danger" id="category_id-error"></div>
@@ -834,10 +869,10 @@
                                     <label for="" class="product">Product Type</label>
                                     <!-- <input type="text" class="form-control" name="prod_type" style="border: 1px solid black; border-radius: 5px;"> -->
                                     <select class="form-select border w-100" aria-label="Default select example"
-                                        title="Select Product type" name="prod_type" value="{{ old('prod_type') }}"
+                                        title="Select Product type" name="prod_type" value="<?php echo e(old('prod_type')); ?>"
                                         style="border: 1px solid black; border-radius: 5px;">
-                                        <option value="{{ $lims_product_data->product_type }}" selected>
-                                            {{ $lims_product_data->product_type }}</option>
+                                        <option value="<?php echo e($lims_product_data->product_type); ?>" selected>
+                                            <?php echo e($lims_product_data->product_type); ?></option>
 
                                         <option value="Product Type 1">Product Type 1</option>
                                         <option value="Product Type 2">Product Type 2</option>
@@ -846,16 +881,16 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label>{{ trans('file.Brand') }}</strong> </label>
+                                    <label><?php echo e(trans('file.Brand')); ?></strong> </label>
                                     <div class="input-group">
                                         <select name="brand_id" class="selectpicker form-control" data-live-search="true"
                                             data-live-search-style="begins" title="Select Brand...">
-                                            <option value="{{ $lims_product_data->brand->id }}" selected>
-                                                {{ $lims_product_data->brand->title }}</option>
+                                            <option value="<?php echo e($lims_product_data->brand->id); ?>" selected>
+                                                <?php echo e($lims_product_data->brand->title); ?></option>
 
-                                            @foreach ($lims_brand_list as $brand)
-                                                <option value="{{ $brand->id }}">{{ $brand->title }}</option>
-                                            @endforeach
+                                            <?php $__currentLoopData = $lims_brand_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $brand): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <option value="<?php echo e($brand->id); ?>"><?php echo e($brand->title); ?></option>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </select>
                                     </div>
                                     <div class="error-message text-danger" id="brand_id-error"></div>
@@ -882,22 +917,22 @@
                                             style="border: 1px solid black; border-radius: 5px;">
                                         <!-- <div class="error-message text-danger" id="user_selected_tags-error"></div> -->
                                         <!-- <div class="user_database_tags">
-                                                                @foreach (explode(',', $lims_product_data->tags) as $tags)
-    <td class="data_user_tags">{{ $tags }}</td>
-                                                                <input type="hidden" class="user_database_tags" name="user_database_tags[]" value="{{ $tags }}"></input>
-    @endforeach
+                                                                <?php $__currentLoopData = explode(',', $lims_product_data->tags); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tags): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+    <td class="data_user_tags"><?php echo e($tags); ?></td>
+                                                                <input type="hidden" class="user_database_tags" name="user_database_tags[]" value="<?php echo e($tags); ?>"></input>
+    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                             </div> -->
                                         <div class="user_database_tags">
-                                            @foreach (explode(',', $lims_product_data->tags) as $tags)
-                                                @php
+                                            <?php $__currentLoopData = explode(',', $lims_product_data->tags); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tags): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                <?php
                                                     $tagArray = explode(',', $tags); // Split tags by comma
-                                                @endphp
-                                                @foreach ($tagArray as $tag)
-                                                    <div class="data_user_tags">{{ $tag }}</div>
+                                                ?>
+                                                <?php $__currentLoopData = $tagArray; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tag): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                    <div class="data_user_tags"><?php echo e($tag); ?></div>
                                                     <input type="hidden" class="user_database_tags"
-                                                        name="user_database_tags[]" value="{{ $tag }}">
-                                                @endforeach
-                                            @endforeach
+                                                        name="user_database_tags[]" value="<?php echo e($tag); ?>">
+                                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                         </div>
                                     </div>
                                 </div>
@@ -926,8 +961,8 @@
         </form>
         </div>
     </section>
-@endsection
-@push('scripts')
+<?php $__env->stopSection(); ?>
+<?php $__env->startPush('scripts'); ?>
     <script>
         $(document).ready(function() {
             $(".edit-variant").click(function() {
@@ -1022,30 +1057,30 @@
         $("ul#product").addClass("show");
         $("ul#product #product-create-menu").addClass("active");
 
-        @if (config('database.connections.saleprosaas_landlord'))
+        <?php if(config('database.connections.saleprosaas_landlord')): ?>
             numberOfProduct = <?php echo json_encode($numberOfProduct); ?>;
             $.ajax({
                 type: 'GET',
                 async: false,
-                url: '{{ route('package.fetchData', $general_setting->package_id) }}',
+                url: '<?php echo e(route('package.fetchData', $general_setting->package_id)); ?>',
                 success: function(data) {
                     if (data['number_of_product'] > 0 && data['number_of_product'] <= numberOfProduct) {
                         localStorage.setItem("message",
                             "You don't have permission to create another product as you already exceed the limit! Subscribe to another package if you wants more!"
                         );
-                        location.href = "{{ route('products.index') }}";
+                        location.href = "<?php echo e(route('products.index')); ?>";
                     }
                 }
             });
-        @endif
+        <?php endif; ?>
 
         $("#digital").hide();
         $("#combo").hide();
-        @if (count($lims_product_data->productVariants) > 0)
+        <?php if(count($lims_product_data->productVariants) > 0): ?>
             $("#variant-section").show();
-        @else
+        <?php else: ?>
             $("#variant-section").hide();
-        @endif
+        <?php endif; ?>
         $("#initial-stock-section").hide();
         $("#diffPrice-section").hide();
         $("#promotion_price").hide();
@@ -1659,16 +1694,16 @@
         });
         <?php $productArray = []; ?>
         var lims_product_code = [
-            @foreach ($lims_product_list_without_variant as $product)
+            <?php $__currentLoopData = $lims_product_list_without_variant; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php
                 $productArray[] = htmlspecialchars($product->code) . ' (' . preg_replace('/[\n\r]/', '<br>', htmlspecialchars($product->name)) . ')';
                 ?>
-            @endforeach
-            @foreach ($lims_product_list_with_variant as $product)
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php $__currentLoopData = $lims_product_list_with_variant; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <?php
                 $productArray[] = htmlspecialchars($product->item_code) . ' (' . preg_replace('/[\n\r]/', '<br>', htmlspecialchars($product->name)) . ')';
                 ?>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             <?php
             echo '"' . implode('","', $productArray) . '"';
             ?>
@@ -2398,7 +2433,7 @@
         $('#search_tags').on('keyup', function() {
             var query = $(this).val();
             $.ajax({
-                url: "{{ route('search_tags') }}",
+                url: "<?php echo e(route('search_tags')); ?>",
                 type: "GET",
                 data: {
                     'query': query
@@ -2447,7 +2482,7 @@
             height: 400
         });
     </script>
-    <script src="{{ asset('calender/date-picker.js') }}"></script>
+    <script src="<?php echo e(asset('calender/date-picker.js')); ?>"></script>
     <!-- Include Dropzone.js library -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
 
@@ -2463,4 +2498,6 @@
             parallelUploads: 1, // Number of files to upload in parallel (set to 1 for sequential uploads)
         });
     </script>
-@endpush
+<?php $__env->stopPush(); ?>
+
+<?php echo $__env->make('backend.layout.main', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\pakistan_fashion_lounge\resources\views/backend/product/edit.blade.php ENDPATH**/ ?>

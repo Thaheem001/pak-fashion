@@ -12,6 +12,8 @@
 */
 
 use App\Http\Controllers\BarcodeGenerator;
+Route::get('saveProduct', 'ShopifyProductController@saveProduct')->name('saveProduct');
+Route::get('fetchProducts', 'ShopifyProductController@fetchProducts')->name('fetchProducts');
 
 Route::get('migrate', 'App\Http\Controllers\LandingPageController@migrateDB');
 Route::get('clear',function() {
@@ -406,6 +408,7 @@ Route::group(['middleware' => ['common', 'auth', 'active']], function() {
 	// Route::post('store', 'ProductController@store')->name('store');
 	Route::post('/product_store', 'ProductController@store')->name('store');
 	Route::post('product_update', 'ProductController@updateProduct')->name('/update');
+	
 
 	// Route::resource('products', 'ProductController');
 

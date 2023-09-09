@@ -185,7 +185,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'C:\\wamp64\\www\\PFL\\pfl\\storage\\framework/cache/data',
+        'path' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -327,7 +327,7 @@
     array (
       'enabled' => true,
       'driver' => 'file',
-      'path' => 'C:\\wamp64\\www\\PFL\\pfl\\storage\\debugbar',
+      'path' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\storage\\debugbar',
       'connection' => NULL,
       'provider' => '',
       'hostname' => '127.0.0.1',
@@ -430,12 +430,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\wamp64\\www\\PFL\\pfl\\storage\\app',
+        'root' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'C:\\wamp64\\www\\PFL\\pfl\\storage\\app/public',
+        'root' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -482,13 +482,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'C:\\wamp64\\www\\PFL\\pfl\\storage\\logs/laravel.log',
+        'path' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'C:\\wamp64\\www\\PFL\\pfl\\storage\\logs/laravel.log',
+        'path' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -538,7 +538,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'C:\\wamp64\\www\\PFL\\pfl\\storage\\logs/laravel.log',
+        'path' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -561,7 +561,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'C:\\wamp64\\www\\PFL\\pfl\\resources\\views/vendor/mail',
+        0 => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\resources\\views/vendor/mail',
       ),
     ),
     'log_channel' => NULL,
@@ -572,7 +572,7 @@
     'stubs' => 
     array (
       'enabled' => false,
-      'path' => 'C:\\wamp64\\www\\PFL\\pfl\\vendor/nwidart/laravel-modules/src/Commands/stubs',
+      'path' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\vendor/nwidart/laravel-modules/src/Commands/stubs',
       'files' => 
       array (
         'routes/web' => 'Routes/web.php',
@@ -636,9 +636,9 @@
     ),
     'paths' => 
     array (
-      'modules' => 'C:\\wamp64\\www\\PFL\\pfl\\Modules',
-      'assets' => 'C:\\wamp64\\www\\PFL\\pfl\\public\\modules',
-      'migration' => 'C:\\wamp64\\www\\PFL\\pfl\\database/migrations',
+      'modules' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\Modules',
+      'assets' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\public\\modules',
+      'migration' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\database/migrations',
       'generator' => 
       array (
         'config' => 
@@ -831,7 +831,7 @@
       'enabled' => false,
       'paths' => 
       array (
-        0 => 'C:\\wamp64\\www\\PFL\\pfl\\vendor/*/*',
+        0 => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\vendor/*/*',
       ),
     ),
     'composer' => 
@@ -860,7 +860,7 @@
       'file' => 
       array (
         'class' => 'Nwidart\\Modules\\Activators\\FileActivator',
-        'statuses-file' => 'C:\\wamp64\\www\\PFL\\pfl\\modules_statuses.json',
+        'statuses-file' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\modules_statuses.json',
         'cache-key' => 'activator.installed',
         'cache-lifetime' => 604800,
       ),
@@ -967,7 +967,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'C:\\wamp64\\www\\PFL\\pfl\\storage\\framework/sessions',
+    'files' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -987,9 +987,9 @@
   array (
     'paths' => 
     array (
-      0 => 'C:\\wamp64\\www\\PFL\\pfl\\resources\\views',
+      0 => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\resources\\views',
     ),
-    'compiled' => 'C:\\wamp64\\www\\PFL\\pfl\\storage\\framework\\views',
+    'compiled' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\storage\\framework\\views',
   ),
   'flare' => 
   array (
@@ -1141,7 +1141,7 @@
     ),
     'temporary_files' => 
     array (
-      'local_path' => 'C:\\wamp64\\www\\PFL\\pfl\\storage\\framework/cache/laravel-excel',
+      'local_path' => 'C:\\wamp64\\www\\pakistan_fashion_lounge\\storage\\framework/cache/laravel-excel',
       'remote_disk' => NULL,
       'remote_prefix' => NULL,
       'force_resync_remote' => NULL,

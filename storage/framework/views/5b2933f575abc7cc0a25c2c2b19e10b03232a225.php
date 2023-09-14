@@ -28,7 +28,7 @@
     <!-- Drip icon font-->
     <link rel="preload" href="<?php echo asset('vendor/dripicons/webfont.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="<?php echo asset('vendor/dripicons/webfont.css') ?>" rel="stylesheet"></noscript>
-    
+
     <!-- jQuery Circle-->
     <link rel="preload" href="<?php echo asset('css/grasp_mobile_progress_circle-1.0.0.min.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="<?php echo asset('css/grasp_mobile_progress_circle-1.0.0.min.css') ?>" rel="stylesheet"></noscript>
@@ -46,6 +46,7 @@
     <link rel="preload" href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="https://cdn.datatables.net/fixedheader/3.1.6/css/fixedHeader.bootstrap.min.css" rel="stylesheet"></noscript>
     <link rel="preload" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <noscript><link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap.min.css" rel="stylesheet"></noscript>
     <?php endif; ?>
 
@@ -85,7 +86,7 @@
     <!-- Drip icon font-->
     <link rel="preload" href="<?php echo asset('../../vendor/dripicons/webfont.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="<?php echo asset('../../vendor/dripicons/webfont.css') ?>" rel="stylesheet"></noscript>
-    
+
     <!-- jQuery Circle-->
     <link rel="preload" href="<?php echo asset('../../css/grasp_mobile_progress_circle-1.0.0.min.css') ?>" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link href="<?php echo asset('../../css/grasp_mobile_progress_circle-1.0.0.min.css') ?>" rel="stylesheet"></noscript>
@@ -123,7 +124,7 @@
 
     <!-- Junior -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   </head>
 
@@ -395,7 +396,7 @@
         </nav>
       </header>
       <?php endif; ?>
-      
+
 
       <div style="display:none" id="content" class="animate-bottom">
           <?php echo $__env->yieldContent('content'); ?>
@@ -743,7 +744,7 @@
                   <p class="italic"><small><?php echo e(trans('file.The field labels marked with * are required input fields')); ?>.</small></p>
                     <?php echo Form::open(['route' => 'report.warehouse', 'method' => 'post']); ?>
 
-                    
+
                       <div class="form-group">
                           <label><?php echo e(trans('file.Warehouse')); ?> *</label>
                           <select name="warehouse_id" class="selectpicker form-control" required data-live-search="true" id="warehouse-id" data-live-search-style="begins" title="Select warehouse...">
@@ -922,6 +923,7 @@
     <?php if(!config('database.connections.saleprosaas_landlord')): ?>
         <script type="text/javascript" src="<?php echo asset('vendor/jquery/jquery.min.js') ?>"></script>
         <script type="text/javascript" src="<?php echo asset('vendor/jquery/jquery-ui.min.js') ?>"></script>
+        <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
         <script type="text/javascript" src="<?php echo asset('vendor/jquery/bootstrap-datepicker.min.js') ?>"></script>
         <script type="text/javascript" src="<?php echo asset('vendor/jquery/jquery.timepicker.min.js') ?>"></script>
         <script type="text/javascript" src="<?php echo asset('vendor/popper.js/umd/popper.min.js') ?>">
@@ -1078,7 +1080,7 @@
       if ($(window).outerWidth() > 1199) {
           $('nav.side-navbar').removeClass('shrink');
       }
-      
+
       function myFunction() {
           setTimeout(showPage, 100);
       }

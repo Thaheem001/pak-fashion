@@ -478,25 +478,25 @@ unset($__errorArgs, $__bag); ?>
                                     style="margin-top: 1px;">This Product require Shipping</label>
                             </div>
                             <!-- <div class=" form-group " id="shipping_field">
-                                                    <label for="" class="Weight ">Weight</label>
-                                                    <div class="d-flex">
-                                                        <div class="form-group col-md-5">
-                                                            <input type="number" class="form-control" value="<?php echo e(old('weight')); ?>" id="currencyInput" name="weight" aria-label="Amount" step="0.01" style="border: 1px solid black; border-radius: 5px;">
-                                                            <div class="error-message text-danger" id="weight-error"></div>
-                                                        </div>
-                                                        <div class="form-group col-md-3">
-                                                            <select required class="form-control selectpicker" name="unit_id">
-                                                                <option value="" disabled selected>Select Product Unit...</option>
-                                                                <?php $__currentLoopData = $lims_unit_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $unit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <label for="" class="Weight ">Weight</label>
+                                                        <div class="d-flex">
+                                                            <div class="form-group col-md-5">
+                                                                <input type="number" class="form-control" value="<?php echo e(old('weight')); ?>" id="currencyInput" name="weight" aria-label="Amount" step="0.01" style="border: 1px solid black; border-radius: 5px;">
+                                                                <div class="error-message text-danger" id="weight-error"></div>
+                                                            </div>
+                                                            <div class="form-group col-md-3">
+                                                                <select required class="form-control selectpicker" name="unit_id">
+                                                                    <option value="" disabled selected>Select Product Unit...</option>
+                                                                    <?php $__currentLoopData = $lims_unit_list; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $unit): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <?php if($unit->base_unit == null): ?>
     <option value="<?php echo e($unit->id); ?>"><?php echo e($unit->unit_name); ?></option>
     <?php endif; ?>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                            </select>
-                                                            <div class="error-message text-danger" id="unit_id-error"></div>
+                                                                </select>
+                                                                <div class="error-message text-danger" id="unit_id-error"></div>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </div> -->
+                                                    </div> -->
                             <div class=" form-group col-md-4" id="shipping_field">
                                 <label for="" class="Weight ">Weight</label>
                                 <div class="d-flex">
@@ -604,8 +604,13 @@ unset($__errorArgs, $__bag); ?>
                                 <div class="row" id="variant-input-section">
                                     <div class="col-md-6 form-group mt-2">
                                         <label><?php echo e(trans('file.Option')); ?> *</label>
-                                        <input type="text" name="variant_option[]" class="form-control variant-field"
+                                        <select name="variant_option[]" class="form-control variant-field option-input1"
                                             placeholder="Size, Color etc...">
+                                            <option value="" disabled selected>Select option</option>
+                                            <option value="Size">Size</option>
+                                            <option value="Color">Color</option>
+                                            <option value="Material">Material</option>
+                                        </select>
                                         <div class="error-message text-danger" id="variant_option-error"></div>
 
                                     </div>
@@ -637,17 +642,17 @@ unset($__errorArgs, $__bag); ?>
                                         <tbody>
                                             <?php $__currentLoopData = $productVariant; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $eachVariant): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <!-- <tr>
-                                                                    <td><?php echo e($eachVariant->title); ?></td>
-                                                                    <td><?php echo e($eachVariant->item_code); ?></td>
-                                                                    <td><?php echo e($eachVariant->price); ?></td>
-                                                                    <td><?php echo e($eachVariant->additional_cost); ?></td>
-                                                                    <td><?php echo e($eachVariant->qty); ?></td>
-                                                                    <td class="d-flex"><button type="button" class="btn btn-primary">Edit</button><button type="button" class="btn btn-danger ml-2 disabled">Delete</button></td>
-                                                                </tr> -->
+                                                                        <td><?php echo e($eachVariant->title); ?></td>
+                                                                        <td><?php echo e($eachVariant->item_code); ?></td>
+                                                                        <td><?php echo e($eachVariant->price); ?></td>
+                                                                        <td><?php echo e($eachVariant->additional_cost); ?></td>
+                                                                        <td><?php echo e($eachVariant->qty); ?></td>
+                                                                        <td class="d-flex"><button type="button" class="btn btn-primary">Edit</button><button type="button" class="btn btn-danger ml-2 disabled">Delete</button></td>
+                                                                    </tr> -->
                                                 <tr class="dbRows">
                                                     <!-- <td>
-                                                                        <input type="text" name="variant_name[]" class="form-control" value="<?php echo e($eachVariant->title); ?>" >
-                                                                    </td> -->
+                                                                            <input type="text" name="variant_name[]" class="form-control" value="<?php echo e($eachVariant->title); ?>" >
+                                                                        </td> -->
                                                     <td class="variant-name mt-2"><?php echo e($eachVariant->title); ?>
 
                                                         <input type="hidden" name="variant_name[]"
@@ -672,7 +677,7 @@ unset($__errorArgs, $__bag); ?>
                                                     </td>
                                                     <td class="d-flex">
                                                         <!-- <button type="button" class="btn btn-primary edit-variant">Edit</button>
-                                                                        <button type="button" class="btn btn-success save-variant" style="display:none;">Save</button> -->
+                                                                            <button type="button" class="btn btn-success save-variant" style="display:none;">Save</button> -->
                                                         <button type="button"
                                                             class="btn btn-danger ml-2 delete-variant">Delete</button>
                                                     </td>
@@ -917,11 +922,11 @@ unset($__errorArgs, $__bag); ?>
                                             style="border: 1px solid black; border-radius: 5px;">
                                         <!-- <div class="error-message text-danger" id="user_selected_tags-error"></div> -->
                                         <!-- <div class="user_database_tags">
-                                                                <?php $__currentLoopData = explode(',', $lims_product_data->tags); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tags): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                                    <?php $__currentLoopData = explode(',', $lims_product_data->tags); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tags): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
     <td class="data_user_tags"><?php echo e($tags); ?></td>
-                                                                <input type="hidden" class="user_database_tags" name="user_database_tags[]" value="<?php echo e($tags); ?>"></input>
+                                                                    <input type="hidden" class="user_database_tags" name="user_database_tags[]" value="<?php echo e($tags); ?>"></input>
     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                                            </div> -->
+                                                                </div> -->
                                         <div class="user_database_tags">
                                             <?php $__currentLoopData = explode(',', $lims_product_data->tags); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tags): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                 <?php
@@ -964,6 +969,21 @@ unset($__errorArgs, $__bag); ?>
 <?php $__env->stopSection(); ?>
 <?php $__env->startPush('scripts'); ?>
     <script>
+        $(".option-input1").select2({
+            width: '100%'
+        });
+        $(document).on('change', '.option-input, .option-input1', function(e) {
+            var val = $(this).val();
+            var count = 0;
+            $('.option-input option:checked, .option-input1 select option:checked').each(function(index,value) {
+                if(val == value.value) {
+                    count++;
+                }
+            })
+            if(count > 1) {
+                $(this).val('').trigger('change');
+            }
+        });
         $(document).ready(function() {
             $(".edit-variant").click(function() {
                 var row = $(this).closest("tr");
@@ -1108,12 +1128,22 @@ unset($__errorArgs, $__bag); ?>
                 $("input[name='code']").val(data);
             });
         });
+        $(".selection").css({'width': '100%'})
 
         $('.add-more-variant').on("click", function() {
             var htmlText =
-                '<div class="col-md-6 form-group mt-2"><label>Option *</label><input type="text" name="variant_option[]" class="form-control variant-field" placeholder="Size, Color etc..."></div><div class="col-md-6 form-group mt-2"><label>Value *</label><input type="text" name="variant_value[]" class="type-variant form-control variant-field"></div>';
+                `<div class="col-md-6 form-group mt-2"><label>Option *</label><select name="variant_option[]" class="form-control variant-field option-input" placeholder="Size, Color etc...">
+                    <option value="" disabled selected>Select option</option>
+                    <option value="Size">Size</option>
+                    <option value="Color">Color</option>
+                    <option value="Material">Material</option>
+                    </select>
+                    <div class="error-message text-danger"></div></div><div class="col-md-6 form-group mt-2"><label>Value *</label><input type="text" name="variant_value[]" class="type-variant form-control variant-field"></div>`;
             $("#variant-input-section").append(htmlText);
             $('.type-variant').tagsInput();
+            $(".option-input").select2({
+                width: 'element'
+            }).next().find('.selection').css({'width': '100%'});
         });
 
         //start variant related js

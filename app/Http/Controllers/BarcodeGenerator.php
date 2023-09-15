@@ -20,9 +20,7 @@ class BarcodeGenerator extends Controller
     {
 
         $products = Product::with('productVariants')->whereNotIn('id', range(1, 10))->get(); //Change The rang according to your need
-
         foreach ($products as $product) {
-
             $product->product_barcode = null ? $product->product_barcode : mt_rand(1000000000000, 9999999999999);
             if ($product->update()) {
                 $parts = explode('-', $product->name, 2);
